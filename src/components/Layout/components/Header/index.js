@@ -11,6 +11,7 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 
 import { Wrapper as PopperWrapper } from '~/components/Popper';
+import Button from '~/components/Button';
 import AccountItem from '~/components/AccountItem';
 
 import styles from './Header.module.scss';
@@ -22,8 +23,8 @@ function Header() {
 
     useEffect(() => {
         setTimeout(() => {
-            setResultSearch([1]);
-        }, 0);
+            setResultSearch([0]);
+        }, 1);
     }, []);
 
     return (
@@ -69,11 +70,13 @@ function Header() {
 
                 {/* Right Header */}
                 <div className={cx('right-header')}>
-                    <button className={cx('upload-btn')}>
+                    <Button upload className={cx('test')}>
                         <FontAwesomeIcon className={cx('upload-icon')} icon={faPlus} />
                         Tải lên
-                    </button>
-                    <button className={cx('login-btn')}>Đăng nhập</button>
+                    </Button>
+                    <Button primary disabled onClick={() => alert('Hellp')}>
+                        Đăng nhập
+                    </Button>
                     <FontAwesomeIcon className={cx('settings')} icon={faEllipsisVertical} />
                 </div>
             </div>

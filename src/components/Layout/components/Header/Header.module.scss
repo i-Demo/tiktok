@@ -1,5 +1,6 @@
 .wrapper {
     --search-height: 46px;
+    --search-width: 361px;
 
     height: 60px;
     box-shadow: 0px 1px 1px rgb(0 0 0 / 12%);
@@ -19,7 +20,7 @@
         }
 
         .search-result {
-            width: 361px;
+            width: var(--search-width);
 
             .search-title {
                 padding: 5px 12px;
@@ -30,7 +31,7 @@
             }
         }
         .search-container {
-            width: 361px;
+            width: var(--search-width);
             height: --search-height;
             background: rgba(22, 24, 35, 0.06);
             border: 1px solid transparent;
@@ -94,42 +95,44 @@
         }
 
         .right-header {
-            .upload-btn {
-                min-width: 110px;
-                padding: 0 16px;
-                height: 36px;
-                border: 1px solid rgba(22, 24, 35, 0.12);
-                border-radius: 2px;
-                font-size: 1.6rem;
-                font-weight: 600;
-                background-color: #fff;
-                cursor: pointer;
+            // .upload-btn {
+            //     min-width: 110px;
+            //     padding: 0 16px;
+            //     height: 36px;
+            //     border: 1px solid rgba(22, 24, 35, 0.12);
+            //     border-radius: 2px;
+            //     font-size: 1.6rem;
+            //     font-weight: 600;
+            //     background-color: #fff;
+            //     cursor: pointer;
 
-                .upload-icon {
-                    margin-right: 8px;
-                }
-
-                &:hover {
-                    background-color: rgba(22, 24, 35, 0.04);
-                }
+            .upload-icon {
+                margin-right: 8px;
             }
 
-            .login-btn {
-                min-width: 100px;
-                height: 36px;
-                border: 1px solid rgba(22, 24, 35, 0.12);
-                background-color: var(--primary);
-                color: rgba(255, 255, 255, 1);
-                border-radius: 4px;
-                font-size: 1.6rem;
-                font-weight: 700;
-                margin-left: 16px;
-                cursor: pointer;
+            // &:hover {
+            //     background-color: rgba(22, 24, 35, 0.04);
+            // }
+            // }
 
-                &:hover {
-                    background-color: rgb(246 16 16);
-                }
-            }
+            // .login-btn {
+            //     display: inline-block;
+            //     min-width: 100px;
+            //     height: 36px;
+            //     line-height: 36px;
+            //     border: 1px solid rgba(22, 24, 35, 0.12);
+            //     background-color: var(--primary);
+            //     color: rgba(255, 255, 255, 1);
+            //     border-radius: 4px;
+            //     font-size: 1.6rem;
+            //     font-weight: 700;
+            //     margin-left: 16px;
+            //     cursor: pointer;
+
+            //     &:hover {
+            //         background-color: rgb(246 16 16);
+            //     }
+            // }
 
             .settings {
                 padding: 0 4px;
@@ -138,9 +141,6 @@
                 color: rgba(22, 24, 35, 0.8);
                 cursor: pointer;
             }
-        }
-        .test-btn {
-            font-size: 1.6rem;
         }
     }
 }
