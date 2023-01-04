@@ -95,6 +95,9 @@
         }
 
         .right-header {
+            .content {
+                margin-left: 0px;
+            }
             // .upload-btn {
             //     min-width: 110px;
             //     padding: 0 16px;
@@ -135,10 +138,11 @@
             // }
 
             .settings {
-                padding: 0 4px;
+                padding: 4px 12px;
                 margin: 0 8px 0 24px;
                 font-size: 1.8rem;
                 color: rgba(22, 24, 35, 0.8);
+                background-color: transparent;
                 cursor: pointer;
             }
         }

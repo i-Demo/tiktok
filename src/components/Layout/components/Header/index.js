@@ -3,9 +3,13 @@ import classNames from 'classnames/bind';
 import Tippy from '@tippyjs/react/headless';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
+    faCircleQuestion,
     faCircleXmark,
+    faEarthAsia,
     faEllipsisVertical,
+    faKeyboard,
     faMagnifyingGlass,
+    faMoon,
     faPlus,
     faSpinner,
 } from '@fortawesome/free-solid-svg-icons';
@@ -13,17 +17,39 @@ import {
 import { Wrapper as PopperWrapper } from '~/components/Popper';
 import Button from '~/components/Button';
 import AccountItem from '~/components/AccountItem';
+import Menu from '~/components/Popper/Menu';
 
 import styles from './Header.module.scss';
 import images from '~/assets/images';
 
 const cx = classNames.bind(styles);
+
+const MENU_ITEMS = [
+    {
+        icon: <FontAwesomeIcon icon={faEarthAsia} />,
+        title: 'Tiếng Việt',
+    },
+    {
+        icon: <FontAwesomeIcon icon={faCircleQuestion} />,
+        title: 'Phản hồi và Trợ giúp',
+        to: '/feedback',
+    },
+    {
+        icon: <FontAwesomeIcon icon={faKeyboard} />,
+        title: 'Phím tắt trên bàn phím',
+    },
+    {
+        icon: <FontAwesomeIcon icon={faMoon} />,
+        title: 'Chế độ tối',
+    },
+];
+
 function Header() {
     const [resultSearch, setResultSearch] = useState([]);
 
     useEffect(() => {
         setTimeout(() => {
-            setResultSearch([0]);
+            setResultSearch([1]);
         }, 1);
     }, []);
 
@@ -74,10 +100,14 @@ function Header() {
                         <FontAwesomeIcon className={cx('upload-icon')} icon={faPlus} />
                         Tải lên
                     </Button>
-                    <Button primary disabled onClick={() => alert('Hellp')}>
+                    <Button className={cx('testt')} primary onClick={() => alert('Dang nhap')}>
                         Đăng nhập
                     </Button>
-                    <FontAwesomeIcon className={cx('settings')} icon={faEllipsisVertical} />
+                    <Menu items={MENU_ITEMS}>
+                        <button className={cx('settings')}>
+                            <FontAwesomeIcon icon={faEllipsisVertical} />
+                        </button>
+                    </Menu>
                 </div>
             </div>
         </header>
