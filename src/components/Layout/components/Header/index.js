@@ -28,6 +28,21 @@ const MENU_ITEMS = [
     {
         icon: <FontAwesomeIcon icon={faEarthAsia} />,
         title: 'Tiếng Việt',
+        children: {
+            title: 'Language',
+            data: [
+                {
+                    type: 'language',
+                    code: 'en',
+                    title: 'English',
+                },
+                {
+                    type: 'language',
+                    code: 'vi',
+                    title: 'Tiếng việt',
+                },
+            ],
+        },
     },
     {
         icon: <FontAwesomeIcon icon={faCircleQuestion} />,
@@ -46,6 +61,17 @@ const MENU_ITEMS = [
 
 function Header() {
     const [resultSearch, setResultSearch] = useState([]);
+
+    // Handle change Menu
+    const handleMenuChange = (menuItem) => {
+        switch (menuItem.type) {
+            case 'language':
+                console.log('Correct');
+                break;
+            default:
+                break;
+        }
+    };
 
     useEffect(() => {
         setTimeout(() => {
@@ -103,7 +129,7 @@ function Header() {
                     <Button className={cx('testt')} primary onClick={() => alert('Dang nhap')}>
                         Đăng nhập
                     </Button>
-                    <Menu items={MENU_ITEMS}>
+                    <Menu items={MENU_ITEMS} onChange={handleMenuChange}>
                         <button className={cx('settings')}>
                             <FontAwesomeIcon icon={faEllipsisVertical} />
                         </button>
