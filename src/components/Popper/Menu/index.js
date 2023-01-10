@@ -46,7 +46,7 @@ function Menu({ children, items = [], onChange = defaultFunction }) {
     return (
         <Tippy
             interactive
-            visible
+            offset={[10, 12]}
             delay={[0, 500]}
             placement="bottom-end"
             render={(attrs) => (
@@ -54,7 +54,7 @@ function Menu({ children, items = [], onChange = defaultFunction }) {
                     <PopperWrapper className={cx('popper')}>
                         {history.length > 1 && (
                             <Header
-                                title="Ngôn ngữ"
+                                title={current.title}
                                 onBack={() => {
                                     setHistory((prev) => prev.slice(0, prev.length - 1));
                                 }}
@@ -64,6 +64,7 @@ function Menu({ children, items = [], onChange = defaultFunction }) {
                     </PopperWrapper>
                 </div>
             )}
+            onHide={() => setHistory((prev) => prev.slice(0, 1))}
         >
             {children}
         </Tippy>

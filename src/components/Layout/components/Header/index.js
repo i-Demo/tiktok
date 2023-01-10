@@ -1,18 +1,26 @@
 import { useState, useEffect } from 'react';
 import classNames from 'classnames/bind';
-import Tippy from '@tippyjs/react/headless';
+import TippyHeadless from '@tippyjs/react/headless';
+import Tippy from '@tippyjs/react';
+import 'tippy.js/dist/tippy.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
     faCircleQuestion,
     faCircleXmark,
+    faCoins,
     faEarthAsia,
     faEllipsisVertical,
+    faGear,
     faKeyboard,
     faMagnifyingGlass,
     faMoon,
     faPlus,
+    faSignOut,
     faSpinner,
+    faUser,
+    faVideo,
 } from '@fortawesome/free-solid-svg-icons';
+import { faEnvelope, faMessage } from '@fortawesome/free-regular-svg-icons';
 
 import { Wrapper as PopperWrapper } from '~/components/Popper';
 import Button from '~/components/Button';
@@ -59,8 +67,39 @@ const MENU_ITEMS = [
     },
 ];
 
+const USER_MENU = [
+    {
+        icon: <FontAwesomeIcon icon={faUser} />,
+        title: 'Xem hồ sơ',
+        to: '/profile',
+    },
+    {
+        icon: <FontAwesomeIcon icon={faCoins} />,
+        title: 'Nhận Xu',
+        to: '/coin',
+    },
+    {
+        icon: <FontAwesomeIcon icon={faVideo} />,
+        title: 'LIVE Studio',
+        to: '/studio',
+    },
+    {
+        icon: <FontAwesomeIcon icon={faGear} />,
+        title: 'Cài đặt',
+        to: '/settings',
+    },
+    ...MENU_ITEMS,
+    {
+        icon: <FontAwesomeIcon icon={faSignOut} />,
+        title: 'Đăng xuất',
+        to: 'logout',
+        separate: true,
+    },
+];
+
 function Header() {
     const [resultSearch, setResultSearch] = useState([]);
+    const currentUser = true;
 
     // Handle change Menu
     const handleMenuChange = (menuItem) => {
@@ -88,7 +127,7 @@ function Header() {
                 </div>
 
                 {/* Div Search */}
-                <Tippy
+                <TippyHeadless
                     interactive
                     visible={resultSearch.length > 0}
                     render={(attrs) => (
@@ -118,22 +157,54 @@ function Header() {
                             <FontAwesomeIcon icon={faMagnifyingGlass} />
                         </button>
                     </div>
-                </Tippy>
+                </TippyHeadless>
 
                 {/* Right Header */}
                 <div className={cx('right-header')}>
-                    <Button upload className={cx('test')}>
-                        <FontAwesomeIcon className={cx('upload-icon')} icon={faPlus} />
-                        Tải lên
-                    </Button>
-                    <Button className={cx('testt')} primary onClick={() => alert('Dang nhap')}>
-                        Đăng nhập
-                    </Button>
-                    <Menu items={MENU_ITEMS} onChange={handleMenuChange}>
-                        <button className={cx('settings')}>
-                            <FontAwesomeIcon icon={faEllipsisVertical} />
-                        </button>
-                    </Menu>
+                    <div className={cx('wrapper')}>
+                        {currentUser ? (
+                            <>
+                                <Button upload to="/upload" className={cx('header-upload')}>
+                                    <FontAwesomeIcon className={cx('upload-icon')} icon={faPlus} />
+                                    Tải lên
+                                </Button>
+                                <Tippy delay={[0, 0]} content="Tin nhắn" placement="bottom">
+                                    <div className={cx('function')}>
+                                        <FontAwesomeIcon icon={faMessage} />
+                                    </div>
+                                </Tippy>
+
+                                <Tippy delay={[0, 0]} content="Hộp thư" placement="bottom">
+                                    <div className={cx('function')}>
+                                        <FontAwesomeIcon icon={faEnvelope} />
+                                    </div>
+                                </Tippy>
+                            </>
+                        ) : (
+                            <>
+                                <Button upload to="/upload" className={cx('header-upload')}>
+                                    <FontAwesomeIcon className={cx('upload-icon')} icon={faPlus} />
+                                    Tải lên
+                                </Button>
+                                <Button className={cx('testt')} primary onClick={() => alert('Dang nhap')}>
+                                    Đăng nhập
+                                </Button>
+                            </>
+                        )}
+                        <Menu items={currentUser ? USER_MENU : MENU_ITEMS} onChange={handleMenuChange}>
+                            {currentUser ? (
+                                <img
+                                    className={cx('user-avatar')}
+                                    src="https://p16-sign-va.tiktokcdn.com/tos-useast2a-avt-0068-aiso/65d3c6b1d1e205c75536ccf1f26d552d~c5_100x100.jpeg?x-expires=1673442000&x-signature=KOnul4uLPa6zitglOHSvWhvoqO0%3D"
+                                    alt="Nguyen Van A"
+                                />
+                            ) : (
+                                <button className={cx('settings')}>
+                                    <FontAwesomeIcon icon={faEllipsisVertical} />
+                                </button>
+                            )}
+                        </Menu>
+                    </div>
                 </div>
             </div>
         </header>

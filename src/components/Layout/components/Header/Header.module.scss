@@ -95,55 +95,50 @@
         }
 
         .right-header {
-            .content {
-                margin-left: 0px;
-            }
-            // .upload-btn {
-            //     min-width: 110px;
-            //     padding: 0 16px;
-            //     height: 36px;
-            //     border: 1px solid rgba(22, 24, 35, 0.12);
-            //     border-radius: 2px;
-            //     font-size: 1.6rem;
-            //     font-weight: 600;
-            //     background-color: #fff;
-            //     cursor: pointer;
+            .wrapper {
+                display: flex;
+                align-items: center;
+                .content {
+                    margin-left: 0px;
+                }
 
-            .upload-icon {
-                margin-right: 8px;
-            }
+                .header-upload {
+                    color: var(--black);
+                    .upload-icon {
+                        margin-right: 8px;
+                    }
+                }
 
-            // &:hover {
-            //     background-color: rgba(22, 24, 35, 0.04);
-            // }
-            // }
+                // Function logined
+                .function {
+                    font-size: 2.2rem;
+                    padding: 4px 12px;
+                    cursor: pointer;
+                }
+                .header-upload + .function {
+                    margin-left: 12px;
+                }
+                .function + .function {
+                    margin-right: 12px;
+                }
 
-            // .login-btn {
-            //     display: inline-block;
-            //     min-width: 100px;
-            //     height: 36px;
-            //     line-height: 36px;
-            //     border: 1px solid rgba(22, 24, 35, 0.12);
-            //     background-color: var(--primary);
-            //     color: rgba(255, 255, 255, 1);
-            //     border-radius: 4px;
-            //     font-size: 1.6rem;
-            //     font-weight: 700;
-            //     margin-left: 16px;
-            //     cursor: pointer;
+                // Avatar
+                .user-avatar {
+                    width: 32px;
+                    height: 32px;
+                    object-fit: cover;
+                    border-radius: 50%;
+                    cursor: pointer;
+                }
 
-            //     &:hover {
-            //         background-color: rgb(246 16 16);
-            //     }
-            // }
-
-            .settings {
-                padding: 4px 12px;
-                margin: 0 8px 0 24px;
-                font-size: 1.8rem;
-                color: rgba(22, 24, 35, 0.8);
-                background-color: transparent;
-                cursor: pointer;
+                .settings {
+                    padding: 4px 12px;
+                    margin: 0 8px 0 24px;
+                    font-size: 1.8rem;
+                    color: rgba(22, 24, 35, 0.8);
+                    background-color: transparent;
+                    cursor: pointer;
+                }
             }
         }
     }

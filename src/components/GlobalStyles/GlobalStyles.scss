@@ -1,10 +1,11 @@
 @import 'normalize.css';
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;600;700;900&display=swap');
 
 :root {
     --primary: rgba(254, 44, 85, 1);
     --black: #000;
     --white: #fff;
+    --text-color: #161823;
     // Default Layout
     --default-layout-width: 1150px;
     --default-layout-horizontal-spacer: 24px;
@@ -25,7 +26,7 @@ body {
     font-size: 1.6rem;
     line-height: 1.5;
     text-rendering: optimizeSpeed;
-    color: var(--black);
+    color: var(--text-color);
 }
 
 input,
@@ -37,4 +38,21 @@ button,
 
 a[href] {
     text-decoration: none;
+}
+
+// Custom styles for tippy tooltip
+body {
+    .tippy-box {
+        border-radius: 8px;
+        padding: 4px;
+        background-color: rgba(84, 84, 84, 0.92);
+    }
+    .tippy-arrow {
+        background-color: transparent;
+        color: rgba(84, 84, 84, 0.92);
+    }
+    .tippy-content {
+        font-size: 1.6rem;
+        font-weight: 500;
+    }
 }
