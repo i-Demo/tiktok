@@ -5,6 +5,7 @@ import AccountItem from '~/components/AccountItem';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCircleXmark, faSpinner } from '@fortawesome/free-solid-svg-icons';
 import { SearchIcon } from '~/components/Icons';
+import { useDebounce } from '~/hooks';
 
 import classNames from 'classnames/bind';
 import styles from './Search.module.scss';
@@ -16,6 +17,7 @@ function Search() {
     const [resultSearch, setResultSearch] = useState([]);
     const [isShow, setIsShow] = useState(true);
     const [loading, setLoading] = useState(false);
+    const debounced = useDebounce(searchValue, 500);
 
     const inputRef = useRef();
 
@@ -33,19 +35,20 @@ function Search() {
 
     // Handle result search api
     useEffect(() => {
-        if (!searchValue.trim()) {
+        if (!debounced.trim()) {
             setResultSearch([]);
             return;
         }
         setLoading(true);
-        fetch(`https://tiktok.fullstack.edu.vn/api/users/search?q=${encodeURIComponent(searchValue)}&type=less`)
+
+        fetch(`https://tiktok.fullstack.edu.vn/api/users/search?q=${encodeURIComponent(debounced)}&type=less`)
             .then((response) => response.json())
             .then((response) => {
                 setResultSearch(response.data);
                 setLoading(false);
             })
             .catch((error) => {});
-    }, [searchValue]);
+    }, [debounced]);
 
     return (
         <TippyHeadless
