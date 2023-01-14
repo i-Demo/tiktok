@@ -1,16 +1,13 @@
-import { useState, useEffect } from 'react';
-import classNames from 'classnames/bind';
-import TippyHeadless from '@tippyjs/react/headless';
 import Tippy from '@tippyjs/react';
 import 'tippy.js/dist/tippy.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCircleXmark, faEllipsisVertical, faPlus, faSpinner } from '@fortawesome/free-solid-svg-icons';
+import { faEllipsisVertical, faPlus } from '@fortawesome/free-solid-svg-icons';
 
-import { Wrapper as PopperWrapper } from '~/components/Popper';
 import Button from '~/components/Button';
-import AccountItem from '~/components/AccountItem';
 import Menu from '~/components/Popper/Menu';
+import Search from '~/components/Layout/components/Search';
 
+import classNames from 'classnames/bind';
 import styles from './Header.module.scss';
 import images from '~/assets/images';
 import {
@@ -24,7 +21,6 @@ import {
     Message,
     MessageBox,
     Profile,
-    SearchIcon,
     Settings,
     UploadIcon,
 } from '~/components/Icons';
@@ -98,7 +94,6 @@ const USER_MENU = [
 ];
 
 function Header() {
-    const [resultSearch, setResultSearch] = useState([]);
     const currentUser = true;
 
     // Handle change Menu
@@ -112,12 +107,6 @@ function Header() {
         }
     };
 
-    useEffect(() => {
-        setTimeout(() => {
-            setResultSearch([1]);
-        }, 1);
-    }, []);
-
     return (
         <header className={cx('wrapper')}>
             <div className={cx('content')}>
@@ -126,38 +115,8 @@ function Header() {
                     <img src={images.logo} alt="Tiktok"></img>
                 </div>
 
-                {/* Div Search */}
-                <TippyHeadless
-                    interactive
-                    visible={resultSearch.length > 0}
-                    render={(attrs) => (
-                        <div className={cx('search-result')} tabIndex="-1" {...attrs}>
-                            <PopperWrapper>
-                                <h4 className={cx('search-title')}>Tài khoản</h4>
-                                <AccountItem />
-                                <AccountItem />
-                                <AccountItem />
-                                <AccountItem />
-                            </PopperWrapper>
-                        </div>
-                    )}
-                >
-                    <div className={cx('search-container')}>
-                        <input type="search" className={cx('search-input')} placeholder="Tìm kiếm tài khoản và video" />
-
-                        <button className={cx('search-clear')}>
-                            <FontAwesomeIcon icon={faCircleXmark} />
-                        </button>
-
-                        <FontAwesomeIcon className={cx('search-loading')} icon={faSpinner} />
-
-                        <span className={cx('search-spliter')} />
-
-                        <button className={cx('search-btn')}>
-                            <SearchIcon />
-                        </button>
-                    </div>
-                </TippyHeadless>
+                {/* Search div */}
+                <Search />
 
                 {/* Right Header */}
                 <div className={cx('right-header')}>
@@ -196,7 +155,7 @@ function Header() {
                                 <Image
                                     className={cx('user-avatar')}
                                     alt="Nguyen Van A"
-                                    src="hhttps://p16-sign-va.tiktokcdn.com/tos-useast2a-avt-0068-giso/b8c0fbbb4eaf6346f2e0da109a876b68~c5_100x100.jpeg?x-expires=1673704800&x-signature=vw2xVgdKO0P2IZzu3QtskGI2E3A%3D"
+                                    src="https://p16-sign-va.tiktokcdn.com/tos-useast2a-avt-0068-giso/b8c0fbbb4eaf6346f2e0da109a876b68~c5_100x100.jpeg?x-expires=1673704800&x-signature=vw2xVgdKO0P2IZzu3QtskGI2E3A%3D"
                                     fallback="https://fullstack.edu.vn/static/media/f8-icon.18cd71cfcfa33566a22b.png"
                                 />
                             ) : (
