@@ -6,6 +6,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCircleXmark, faSpinner } from '@fortawesome/free-solid-svg-icons';
 import { SearchIcon } from '~/components/Icons';
 import { useDebounce } from '~/hooks';
+// import * as request from '~/utils/request';
+import { search } from '~/apiServices/searchServices';
 
 import classNames from 'classnames/bind';
 import styles from './Search.module.scss';
@@ -39,15 +41,15 @@ function Search() {
             setResultSearch([]);
             return;
         }
-        setLoading(true);
 
-        fetch(`https://tiktok.fullstack.edu.vn/api/users/search?q=${encodeURIComponent(debounced)}&type=less`)
-            .then((response) => response.json())
-            .then((response) => {
-                setResultSearch(response.data);
-                setLoading(false);
-            })
-            .catch((error) => {});
+        // Goi api search
+        const fetchApi = async () => {
+            setLoading(true);
+            const result = await search(debounced);
+            setResultSearch(result);
+            setLoading(false);
+        };
+        fetchApi();
     }, [debounced]);
 
     return (
