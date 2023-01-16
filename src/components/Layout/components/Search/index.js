@@ -75,7 +75,7 @@ function Search() {
                     value={searchValue}
                     className={cx('search-input')}
                     onChange={(e) => {
-                        if (e.target.value.trim() === '') {
+                        if (e.target.value.startsWith(' ')) {
                             setSearchValue('');
                         } else {
                             setSearchValue(e.target.value);
@@ -94,7 +94,7 @@ function Search() {
                 {loading && <FontAwesomeIcon className={cx('search-loading')} icon={faSpinner} />}
                 <span className={cx('search-spliter')} />
 
-                <button className={cx('search-btn')}>
+                <button className={cx('search-btn')} onMouseDown={(e) => e.preventDefault()}>
                     <SearchIcon />
                 </button>
             </div>

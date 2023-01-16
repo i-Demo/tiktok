@@ -46,6 +46,7 @@ function Menu({ children, items = [], onChange = defaultFunction }) {
     return (
         <Tippy
             interactive
+            hideOnClick={false}
             offset={[10, 12]}
             delay={[0, 500]}
             placement="bottom-end"
