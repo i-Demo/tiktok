@@ -53,52 +53,55 @@ function Search() {
     }, [debounced]);
 
     return (
-        <TippyHeadless
-            interactive
-            visible={isShow && resultSearch.length > 0}
-            render={(attrs) => (
-                <div className={cx('search-result')} tabIndex="-1" {...attrs}>
-                    <PopperWrapper>
-                        <h4 className={cx('search-title')}>Tài khoản</h4>
-                        {resultSearch.map((result) => (
-                            <AccountItem key={result.id} data={result} onClick={handleHideResult} />
-                        ))}
-                    </PopperWrapper>
-                </div>
-            )}
-            onClickOutside={handleHideResult}
-        >
-            <div className={cx('search-container')}>
-                <input
-                    ref={inputRef}
-                    type="search"
-                    value={searchValue}
-                    className={cx('search-input')}
-                    onChange={(e) => {
-                        if (e.target.value.startsWith(' ')) {
-                            setSearchValue('');
-                        } else {
-                            setSearchValue(e.target.value);
-                        }
-                    }}
-                    placeholder="Tìm kiếm tài khoản và video"
-                    onFocus={() => setIsShow(true)}
-                />
-
-                {searchValue && !loading && (
-                    <button className={cx('search-clear')} onClick={handleClickClear}>
-                        <FontAwesomeIcon icon={faCircleXmark} />
-                    </button>
+        // Using a wrapper <div> or <span> tag around the reference element solves this by creating a new parentNode context.
+        <div>
+            <TippyHeadless
+                interactive
+                visible={isShow && resultSearch.length > 0}
+                render={(attrs) => (
+                    <div className={cx('search-result')} tabIndex="-1" {...attrs}>
+                        <PopperWrapper>
+                            <h4 className={cx('search-title')}>Tài khoản</h4>
+                            {resultSearch.map((result) => (
+                                <AccountItem key={result.id} data={result} onClick={handleHideResult} />
+                            ))}
+                        </PopperWrapper>
+                    </div>
                 )}
+                onClickOutside={handleHideResult}
+            >
+                <div className={cx('search-container')}>
+                    <input
+                        ref={inputRef}
+                        type="search"
+                        value={searchValue}
+                        className={cx('search-input')}
+                        onChange={(e) => {
+                            if (e.target.value.startsWith(' ')) {
+                                setSearchValue('');
+                            } else {
+                                setSearchValue(e.target.value);
+                            }
+                        }}
+                        placeholder="Tìm kiếm tài khoản và video"
+                        onFocus={() => setIsShow(true)}
+                    />
 
-                {loading && <FontAwesomeIcon className={cx('search-loading')} icon={faSpinner} />}
-                <span className={cx('search-spliter')} />
+                    {searchValue && !loading && (
+                        <button className={cx('search-clear')} onClick={handleClickClear}>
+                            <FontAwesomeIcon icon={faCircleXmark} />
+                        </button>
+                    )}
 
-                <button className={cx('search-btn')} onMouseDown={(e) => e.preventDefault()}>
-                    <SearchIcon />
-                </button>
-            </div>
-        </TippyHeadless>
+                    {loading && <FontAwesomeIcon className={cx('search-loading')} icon={faSpinner} />}
+                    <span className={cx('search-spliter')} />
+
+                    <button className={cx('search-btn')} onMouseDown={(e) => e.preventDefault()}>
+                        <SearchIcon />
+                    </button>
+                </div>
+            </TippyHeadless>
+        </div>
     );
 }
 
