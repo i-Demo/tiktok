@@ -6,10 +6,10 @@ import { Link } from 'react-router-dom';
 
 import Button from '~/components/Button';
 import Menu from '~/components/Popper/Menu';
-import Search from '~/components/Layout/components/Search';
+import Search from '~/layouts/components/Search';
 import images from '~/assets/images';
 import Image from '~/components/Image';
-import routesConfig from '~/config/routes';
+import config from '~/config';
 
 import classNames from 'classnames/bind';
 import styles from './Header.module.scss';
@@ -210,12 +210,16 @@ function Header() {
         }
     };
 
+    // const handleBackHome = () => {
+    //     return true;
+    // };
+
     return (
         <header className={cx('wrapper')}>
             <div className={cx('content')}>
                 {/* Logo */}
                 <div className={cx('logo')}>
-                    <Link to={routesConfig.home}>
+                    <Link to={config.routes.home}>
                         <img src={images.logo} alt="Tiktok"></img>
                     </Link>
                 </div>

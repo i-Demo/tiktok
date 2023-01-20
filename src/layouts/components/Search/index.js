@@ -7,7 +7,7 @@ import { faCircleXmark, faSpinner } from '@fortawesome/free-solid-svg-icons';
 import { SearchIcon } from '~/components/Icons';
 import { useDebounce } from '~/hooks';
 // import * as request from '~/utils/request';
-import { search } from '~/apiServices/searchServices';
+import { search } from '~/services/searchService';
 
 import classNames from 'classnames/bind';
 import styles from './Search.module.scss';
