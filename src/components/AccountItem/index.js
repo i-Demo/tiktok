@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCheckCircle } from '@fortawesome/free-solid-svg-icons';
 import { Link } from 'react-router-dom';
@@ -21,5 +22,10 @@ function AccountItem({ data, onClick }) {
         </Link>
     );
 }
+
+AccountItem.propTypes = {
+    data: PropTypes.object,
+    onClick: PropTypes.func,
+};
 
 export default AccountItem;
